@@ -131,7 +131,6 @@ body{
 .advantages__holder-content-item div p{
     line-height: 130%;
     font-size: 14px;
-    font-size: 10px;
 }
 
 @media screen and (min-width: 768px){
