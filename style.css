@@ -132,7 +132,137 @@ body{
     line-height: 130%;
     font-size: 14px;
 }
+.stage{
+    background-color: #fff;
+}
+.stage__container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 100px;
+    position: relative;
+}
 
+.stage__container h2{
+    font-weight: 400;
+    font-size: 39px;
+    line-height: 50px;
+    text-align: center;
+    color: #5AA14D;
+    margin-bottom: 65px;
+
+}
+
+.stage__container-wrap{
+    display: flex;
+    align-items: stretch;
+    max-width: 90%;
+    gap: 40px;
+}
+.stage__container-wrap-list{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 460px;
+    width: 100%;
+}
+.stage__container-wrap-list-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #D6F5D2;
+    border-radius: 10px;
+    max-width: 100%;
+    width: 100%;
+    font-weight: 450;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    color: #333333;
+    padding: 15px;
+    cursor: pointer;
+}
+.stage__container-wrap-list-item.active{
+    background: #D6F5D2;
+    border-color: #D6F5D2;
+}
+.stage__container-wrap-content{
+    display: none;
+    flex-direction: column;
+    max-width: 732px;
+    width: 100%;
+    background: #F3F3F3;
+    border-radius: 15px;
+    padding: 40px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #333333;
+    gap: 25px;
+}
+
+.stage__container-wrap-content img{
+    border-radius: 10px;
+    min-height: 196px;
+    max-height: 196px;
+    height: 100%;
+    max-width: 100%;
+    margin-bottom: 10px;
+}
+.stage__container-wrap-content h3{
+    font-weight: 450;
+    font-size: 25px;
+    line-height: 31px;
+}
+.stage__container-wrap-content p{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+.stage__container-wrap-content .btn{
+    max-width: 230px;
+    width: 100%;
+    padding: 8px 20px 8px;
+    background-color: #509B43;
+    opacity: 0.82;
+    text-align: center;
+    display: block;
+   transition: .3s ease;
+   color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    margin-top: auto;
+}
+.stage__container-wrap-content .btn:hover{
+   opacity: 1;
+}
+
+.stage__container-buttons{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    
+}
+.stage-btn{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 46px;
+    height: 46px;
+    cursor: pointer;
+
+}
+
+.stage-btn.left{
+    background: url(./images/step-left.png) center center / cover no-repeat;
+}
+.stage-btn.right{
+    background: url(./images/step-right.png) center center / cover no-repeat;
+    left: inherit;
+    right: 0;
+}
 @media screen and (min-width: 768px){
     .advantages-section{
         margin-bottom: 60px;
@@ -163,6 +293,24 @@ body{
         margin-bottom: 108px;
     }
   
+}
+@media screen and (max-width:1023px) {
+    .stage__container-wrap {
+        flex-direction: column;
+        max-width: 100%;
+        width: 90%;
+        align-items: center;
+    }
+    .stage__container-wrap-list {
+        overflow: hidden;
+        overflow-x: scroll ;
+        flex-direction: row;
+        max-width: 100%;
+
+    }
+    .stage__container-wrap-list-item {
+       min-width: fit-content;
+    }
 }
 @media screen and (max-width:768px) {
     .advantages__holder-content{
