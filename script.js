@@ -73,7 +73,7 @@ function slideArrowsClick(direction) {
 function showContent(itemName, index) {
     animate(itemName);
     changeSlide(itemName, index);
-    updateActiveTab(index);
+    // updateActiveTab(index);
 }
-addTabsActive();
+// addTabsActive();
 showContent(frontBlockId, 0);
