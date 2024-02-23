@@ -2340,7 +2340,7 @@ footer {
 .news{
     padding: 180px 0;
     background-color: #fff;
-
+    margin: 0;
 }
 @media screen and (max-width:1023px) {
     .news{
