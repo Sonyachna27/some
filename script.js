@@ -1,4 +1,3 @@
-
 const allContentBlocks = Array.from(document.querySelectorAll('.stage__container-wrap-content'));
 const allStageLinks = Array.from(document.querySelectorAll('.stage__container-wrap-list-item'));
 const rightArrow = document.querySelector('.right');
@@ -73,7 +72,89 @@ function slideArrowsClick(direction) {
 function showContent(itemName, index) {
     animate(itemName);
     changeSlide(itemName, index);
-    // updateActiveTab(index);
+    updateActiveTab(index);
 }
-// addTabsActive();
+addTabsActive();
 showContent(frontBlockId, 0);
+
+
+const codingTabs = document.querySelectorAll('.item');
+const firstBlock = "coding-1-1";
+const contentBlocks = Array.from(document.querySelectorAll('.coding__container-content'));
+const codingTabsLink = document.querySelectorAll('.link');
+
+function showCodingContent(firstBlock) {
+    const contentBlocks = document.querySelectorAll('.coding__container-content');
+    const targetBlock = document.getElementById(firstBlock);
+
+    contentBlocks.forEach((block) => {
+        if (block.id === firstBlock) {
+            block.style.display = 'block';
+        } else {
+            block.style.display = 'none';
+        }
+    });
+
+    codingTabsLink.forEach((link) => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            const targetBlockId = link.getAttribute('href').substring(1);
+            const targetBlock = document.getElementById(targetBlockId);
+
+            contentBlocks.forEach((block) => {
+                if (block.id === targetBlockId) {
+                    block.style.display = 'block';
+                } else {
+                    block.style.display = 'none';
+                }
+            });
+        });
+    });
+}
+
+showCodingContent(firstBlock);
+
+
+function animateCoding(item, isExpanding) {
+    const duration = 300;
+    const startTimestamp = performance.now();
+    item.style.height = isExpanding ? '0' : item.scrollHeight + 'px';
+    function step(timestamp) {
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const currentHeight = isExpanding ? progress * item.scrollHeight : (1 - progress) * item.scrollHeight;
+        item.style.height = currentHeight + 'px';
+       
+        if (progress < 1) {
+            requestAnimationFrame(step);
+        }
+    }
+
+    requestAnimationFrame(step);
+}
+
+function addCodingTabsActive() {
+    codingTabs.forEach((button) => {
+        button.addEventListener('click', () => {
+            const hasChildItem = button.classList.contains('has-child');
+            if (hasChildItem) {
+                const submenu = button.querySelector('.sub-menu');
+                if (submenu && !event.target.classList.contains('link')) {
+                    const isActive = button.classList.contains('active');
+                    button.classList.toggle('active', !isActive);
+                    animateCoding(submenu, !isActive);
+                }
+            }
+        });
+    });
+}
+
+addCodingTabsActive();
+
+
+
+
+
+
+
+
+
