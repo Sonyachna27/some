@@ -2483,6 +2483,7 @@ transition: .3s ease;
 
 .coding{
     padding: 108px 0;
+    background-color: #fff;
 }
 @media screen and (max-width:1023px) {
     .coding{
@@ -2508,6 +2509,11 @@ transition: .3s ease;
     min-height: fit-content;
 
 }
+@media screen and (max-width:995px) {
+    .coding__container-panel{
+        display: none;
+    }
+}
 .coding__container-panel-nav{
     display: flex;
     flex-direction: column;
@@ -2532,13 +2538,12 @@ transition: .3s ease;
     background-color: #4c9bca;
     cursor: pointer;
     height: auto;
-    
-    
 }
+
 .coding__container-panel-nav ul li a{
     max-width: 100%;
     width: fit-content;
-    padding: 11px 0px 10px 20px;
+    padding: 11px 38px 10px 20px;
 }
 .has-child:after{
     position: absolute;
@@ -2548,7 +2553,8 @@ transition: .3s ease;
     align-items: center;
     justify-content: center;
     width: 38px;
-    height: 35px;
+    max-height: 38px;
+    height: 100%;
     background-color: transparent;
     border: 1px solid #4c9bca;
     transition: .3s ease;
@@ -2586,6 +2592,49 @@ transition: .3s ease;
     background-color: #4c9bca;
     color: #fff;
 }
+.coding__container-panel-nav ul li .sub-menu li.active-item{
+    color: #166899;
+    background-color: #4c9bca;
+}
 .coding__container-content{
     display: block;
 }
+.coding__container-content h2{
+    font-size: 32px;
+    line-height: 1;
+    margin-bottom: 30px;
+}
+.coding__container-content img{
+    float: right;
+    max-width: 400px;
+    width: 100%;
+    margin: 5px;
+}
+.coding__container-content h3{
+    font-size: 28px;
+    line-height: 1;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+.coding__container-content p:not(:nth-last-of-type(1)){
+    margin-bottom: 20px;
+}
+.coding__container-content ul{
+    list-style-type:decimal ;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 20px;
+    color: inherit;
+}
+.coding__container-content ul li{
+    list-style-type:decimal ;
+    list-style-position: inside;
+    color: #858A9F;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 27px;
+    
+}
+
