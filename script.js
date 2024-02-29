@@ -83,38 +83,6 @@ const firstBlock = "coding-1-1";
 const contentBlocks = Array.from(document.querySelectorAll('.coding__container-content'));
 const codingTabsLink = document.querySelectorAll('.link');
 
-function showCodingContent(firstBlock) {
-    const contentBlocks = document.querySelectorAll('.coding__container-content');
-    const targetBlock = document.getElementById(firstBlock);
-
-    contentBlocks.forEach((block) => {
-        if (block.id === firstBlock) {
-            block.style.display = 'block';
-        } else {
-            block.style.display = 'none';
-        }
-    });
-
-    codingTabsLink.forEach((link) => {
-        link.addEventListener('click', (event) => {
-            event.preventDefault();
-            const targetBlockId = link.getAttribute('href').substring(1);
-            const targetBlock = document.getElementById(targetBlockId);
-
-            contentBlocks.forEach((block) => {
-                if (block.id === targetBlockId) {
-                    block.style.display = 'block';
-                } else {
-                    block.style.display = 'none';
-                }
-            });
-        });
-    });
-}
-
-showCodingContent(firstBlock);
-
-
 function animateCoding(item, isExpanding) {
     const duration = 300;
     const startTimestamp = performance.now();
@@ -132,6 +100,20 @@ function animateCoding(item, isExpanding) {
     requestAnimationFrame(step);
 }
 
+function animateCodingContent(targetBlock) {
+    const duration = 1000;
+    const startTimestamp = performance.now();
+
+    function step(timestamp) {
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        targetBlock.style.opacity = progress;
+        if (progress < 1) {
+            requestAnimationFrame(step);
+        }
+    }
+    requestAnimationFrame(step);
+}
+
 function addCodingTabsActive() {
     codingTabs.forEach((button) => {
         button.addEventListener('click', () => {
@@ -143,7 +125,13 @@ function addCodingTabsActive() {
                     button.classList.toggle('active', !isActive);
                     animateCoding(submenu, !isActive);
                 }
+            } else{
+                codingTabs.forEach((otherButton) => {
+                    otherButton.classList.remove('active-item');
+                  });
+                button.classList.add('active-item');  
             }
+            
         });
     });
 }
@@ -151,6 +139,41 @@ function addCodingTabsActive() {
 addCodingTabsActive();
 
 
+
+function showCodingContent(firstBlock) {
+    const contentBlocks = document.querySelectorAll('.coding__container-content');
+    const targetBlock = document.getElementById(firstBlock);
+
+    contentBlocks.forEach((block) => {
+        if (block.id === firstBlock) {
+            block.style.display = 'block';
+            block.style.opacity = 0; 
+            animateCodingContent(block);
+        } else {
+            block.style.display = 'none';
+            block.style.opacity = 0; 
+        }
+    });
+
+    codingTabsLink.forEach((link) => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            const targetBlockId = link.getAttribute('href').substring(1);
+            const targetBlock = document.getElementById(targetBlockId);
+
+            contentBlocks.forEach((block) => {
+                if (block.id === targetBlockId) {
+                    block.style.display = 'block';
+                    animateCodingContent(block); 
+                } else {
+                    block.style.display = 'none';
+                }
+            });
+        });
+    });
+}
+
+showCodingContent(firstBlock);
 
 
 
