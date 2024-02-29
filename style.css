@@ -2479,3 +2479,113 @@ transition: .3s ease;
    min-height: 17px;
    margin-left: 10px;
 }
+/* секція послуги лікування */
+
+.coding{
+    padding: 108px 0;
+}
+@media screen and (max-width:1023px) {
+    .coding{
+        padding: 50px 0;
+    }
+    
+}
+.coding__container{
+    display: grid;
+    grid-template-columns: .3fr .7fr;
+    gap: 30px;
+}
+@media screen and (max-width:1023px) {
+    .coding__container{
+    display: flex;
+    }
+}
+.open_list{
+    background-color: #1f96d9;
+}
+.coding__container-panel{
+    height: auto;
+    min-height: fit-content;
+
+}
+.coding__container-panel-nav{
+    display: flex;
+    flex-direction: column;
+
+}
+.coding__container-panel-nav ul{
+    display: flex;
+    flex-direction: column;
+    min-width: 295px;
+    width: 100%;
+    gap: 1px;
+}
+.coding__container-panel-nav ul li{
+    width: 100%; 
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #166899;
+    font-size: 14px;
+    position: relative;
+    transition: background .3s linear;
+    background-color: #4c9bca;
+    cursor: pointer;
+    height: auto;
+    
+    
+}
+.coding__container-panel-nav ul li a{
+    max-width: 100%;
+    width: fit-content;
+    padding: 11px 0px 10px 20px;
+}
+.has-child:after{
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 35px;
+    background-color: transparent;
+    border: 1px solid #4c9bca;
+    transition: .3s ease;
+    content: '';
+    background: url('./images/triangle-down-svgrepo-com.svg') center center / 25% no-repeat;
+}
+.coding__container-panel-nav ul li:hover.has-child:after{
+    background-color: rgba(21, 101, 151, 0.08);
+}
+.coding__container-panel-nav ul li .sub-menu{
+    height: 0;
+    overflow: hidden; 
+    transition: height 0.3s ease;
+}
+
+ .coding__container-panel-nav ul li.active .sub-menu{
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    height: 100%;
+    background-color: #eafafc;
+}
+ .coding__container-panel-nav ul li .sub-menu li{
+    color: #166899;
+    font-size: 14px;
+    display: block;
+    padding: 0px;
+    position: relative;
+    background-color: transparent;
+    text-transform: none;
+    font-weight: 400;
+    width: 100%;
+}
+.coding__container-panel-nav ul li .sub-menu li:hover{
+    background-color: #4c9bca;
+    color: #fff;
+}
+.coding__container-content{
+    display: block;
+}
