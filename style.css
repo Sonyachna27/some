@@ -2561,22 +2561,7 @@ transition: .3s ease;
     content: '';
     background: url('./images/triangle-down-svgrepo-com.svg') center center / 25% no-repeat;
 }
-.coding__container-panel-nav ul li:hover.has-child:after{
-    background-color: rgba(21, 101, 151, 0.08);
-}
-.coding__container-panel-nav ul li .sub-menu{
-    height: 0;
-    overflow: hidden; 
-    transition: height 0.3s ease;
-}
 
- .coding__container-panel-nav ul li.active .sub-menu{
-    display: flex;
-    flex-direction: column;
-    opacity: 1;
-    height: 100%;
-    background-color: #eafafc;
-}
  .coding__container-panel-nav ul li .sub-menu li{
     color: #166899;
     font-size: 14px;
@@ -2596,45 +2581,19 @@ transition: .3s ease;
     color: #166899;
     background-color: #4c9bca;
 }
+
+.coding__container-panel-nav ul li:hover.has-child:after{
+    background-color: rgba(21, 101, 151, 0.08);
+}
+.coding__container-panel-nav ul li .sub-menu{
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    background-color: #eafafc;
+    overflow: hidden; 
+}
 .coding__container-content{
     display: block;
 }
-.coding__container-content h2{
-    font-size: 32px;
-    line-height: 1;
-    margin-bottom: 30px;
-}
-.coding__container-content img{
-    float: right;
-    max-width: 400px;
-    width: 100%;
-    margin: 5px;
-}
-.coding__container-content h3{
-    font-size: 28px;
-    line-height: 1;
-    font-weight: 400;
-    margin-bottom: 20px;
-}
-.coding__container-content p:not(:nth-last-of-type(1)){
-    margin-bottom: 20px;
-}
-.coding__container-content ul{
-    list-style-type:decimal ;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    margin-bottom: 20px;
-    color: inherit;
-}
-.coding__container-content ul li{
-    list-style-type:decimal ;
-    list-style-position: inside;
-    color: #858A9F;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 27px;
-    
-}
+
 

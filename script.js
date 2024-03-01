@@ -28,7 +28,6 @@ function updateActiveTab(index) {
     });
 }
 
-
 function changeSlide(blockId) {
     allContentBlocks.forEach((block, index) => {
         if (block.getAttribute('id') === blockId) {
@@ -78,102 +77,69 @@ addTabsActive();
 showContent(frontBlockId, 0);
 
 
-const codingTabs = document.querySelectorAll('.item');
-const firstBlock = "coding-1-1";
-const contentBlocks = Array.from(document.querySelectorAll('.coding__container-content'));
-const codingTabsLink = document.querySelectorAll('.link');
 
-function animateCoding(item, isExpanding) {
+
+
+const codingTabs = document.querySelectorAll('.item.has-child');
+const codingTabsLink = document.querySelectorAll('.link');
+const subMenu = document.querySelectorAll('.coding__container-panel-nav ul li.sub-menu')
+function animateCoding(item) {
     const duration = 300;
     const startTimestamp = performance.now();
-    item.style.height = isExpanding ? '0' : item.scrollHeight + 'px';
+    const isOpen = item.style.height !== '0px';
+
     function step(timestamp) {
         const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-        const currentHeight = isExpanding ? progress * item.scrollHeight : (1 - progress) * item.scrollHeight;
+        const currentHeight = isOpen ? (1 - progress) * item.scrollHeight : progress * item.scrollHeight;
         item.style.height = currentHeight + 'px';
-       
-        if (progress < 1) {
-            requestAnimationFrame(step);
-        }
-    }
 
-    requestAnimationFrame(step);
-}
-
-function animateCodingContent(targetBlock) {
-    const duration = 1000;
-    const startTimestamp = performance.now();
-
-    function step(timestamp) {
-        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-        targetBlock.style.opacity = progress;
         if (progress < 1) {
             requestAnimationFrame(step);
         }
     }
     requestAnimationFrame(step);
 }
-
-function addCodingTabsActive() {
+function showAnimation() {
     codingTabs.forEach((button) => {
         button.addEventListener('click', () => {
-            const hasChildItem = button.classList.contains('has-child');
-            if (hasChildItem) {
-                const submenu = button.querySelector('.sub-menu');
-                if (submenu && !event.target.classList.contains('link')) {
-                    const isActive = button.classList.contains('active');
-                    button.classList.toggle('active', !isActive);
-                    animateCoding(submenu, !isActive);
-                }
-            } else{
-                codingTabs.forEach((otherButton) => {
-                    otherButton.classList.remove('active-item');
-                  });
-                button.classList.add('active-item');  
-            }
-            
-        });
+            const subMenu = button.querySelector('.sub-menu');
+           animateCoding(subMenu);
+         });
     });
 }
+showAnimation();
 
-addCodingTabsActive();
-
-
-
-function showCodingContent(firstBlock) {
-    const contentBlocks = document.querySelectorAll('.coding__container-content');
-    const targetBlock = document.getElementById(firstBlock);
-
-    contentBlocks.forEach((block) => {
-        if (block.id === firstBlock) {
-            block.style.display = 'block';
-            block.style.opacity = 0; 
-            animateCodingContent(block);
-        } else {
-            block.style.display = 'none';
-            block.style.opacity = 0; 
+document.addEventListener('DOMContentLoaded', () => {
+    const subMenus = document.querySelectorAll('.sub-menu');
+    subMenus.forEach(subMenu => {
+        const hasActiveItem = subMenu.querySelector('.active-item') !== null;
+        if (!hasActiveItem) {
+            subMenu.style.height = '0px';  
         }
     });
+});
 
-    codingTabsLink.forEach((link) => {
-        link.addEventListener('click', (event) => {
-            event.preventDefault();
-            const targetBlockId = link.getAttribute('href').substring(1);
-            const targetBlock = document.getElementById(targetBlockId);
-
-            contentBlocks.forEach((block) => {
-                if (block.id === targetBlockId) {
-                    block.style.display = 'block';
-                    animateCodingContent(block); 
-                } else {
-                    block.style.display = 'none';
-                }
-            });
-        });
+function activeClassLink(){
+    const currentURL = window.location.href;
+    const currentPage = currentURL.substring(currentURL.lastIndexOf('/') + 1);
+   
+    codingTabsLink.forEach((activeLink) => {
+        const targetBlockId = activeLink.getAttribute('href');
+        console.log(currentPage === targetBlockId);
+        if (currentPage === targetBlockId) {
+            activeLink.parentNode.classList.add('active-item');
+        } else {
+            activeLink.parentNode.classList.remove('active-item');
+        }
     });
 }
 
-showCodingContent(firstBlock);
+activeClassLink();
+
+
+
+
+
 
 
 
